@@ -23,12 +23,13 @@ public class MandelbrotWindow extends JFrame
 	private JTextField tY;
 	private DrawZone drawZone;
 
-	public MandelbrotWindow(String titre, int w, int h)
+	public MandelbrotWindow(String title, int w, int h)
 	{
 		super(title);
 		this.initializeMenu();
 		this.initialize();
 		this.setSize(w, h);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);	
 	}
 	
@@ -40,7 +41,8 @@ public class MandelbrotWindow extends JFrame
 		c.add(pNorth, BorderLayout.NORTH);	
 		
 		JPanel pDrawZone = this.createDrawZone();
-		c.add(pDrawZone, BorderLayout.CENTER);			
+		c.add(pDrawZone, BorderLayout.CENTER);
+		
 	}
 	
 	private void initializeMenu()
@@ -49,7 +51,7 @@ public class MandelbrotWindow extends JFrame
 		this.setJMenuBar(menuBar);
 		
 		JMenu menuFichier = new JMenu("File");
-		menuBar.add(fileMenu);
+		menuBar.add(menuFichier);
 	}
 	
 	
@@ -67,7 +69,7 @@ public class MandelbrotWindow extends JFrame
 		return pNorth;
 	}
 
-	class ActionL implements ActionListener
+	abstract class ActionL implements ActionListener
 	{
 		
 	}
