@@ -1,7 +1,7 @@
 public final class Complex 
 {
-	private double real;
-	private double imaginary;
+	private final double real;
+	private final double imaginary;
 	
 	public Complex (double real, double imaginary)
 	{
@@ -35,5 +35,8 @@ public final class Complex
         return new Complex(r, i);
 	}
 	
-
+	public double modulus()
+	{
+		return Math.hypot(this.real, this.imaginary);
+	}
 }
