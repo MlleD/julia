@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
@@ -22,11 +21,10 @@ public class DrawZone extends JPanel
 	{
 		this.y = y;
 	}
-	
+	@Override
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		
 	}
 }
 
