@@ -21,6 +21,7 @@ public class DrawZone extends JPanel
 	{
 		this.y = y;
 	}
+	
 	@Override
 	public void paintComponent(Graphics g)
 	{
