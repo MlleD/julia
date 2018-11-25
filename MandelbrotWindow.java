@@ -1,9 +1,11 @@
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -67,7 +69,9 @@ public class MandelbrotWindow extends JFrame
 	 */
 	private JPanel createDrawZone()
 	{
+		// Création du panneau de la zone de dessin.
 		JPanel pDrawZone = new JPanel(new BorderLayout());
+		pDrawZone.setBorder(BorderFactory.createTitledBorder("Draw Zone"));
 		
 		return pDrawZone;
 	}
@@ -82,33 +86,60 @@ public class MandelbrotWindow extends JFrame
 		// Création du panneau nord.
 		JPanel pNorth = new JPanel();
 		pNorth.setLayout(new BorderLayout());
-		pNorth.setBorder(BorderFactory.createTitledBorder("Complex"));
 		
 		// Création du panneau pour les champs de texte.
-		JPanel pTextFieds = new JPanel(new GridLayout(2, 2, 5, 5));
-		pNorth.add(pTextFieds, BorderLayout.CENTER);
+		JPanel pTextFields = new JPanel(new GridLayout(2, 2, 2, 2));
+		pTextFields.setBorder(BorderFactory.createTitledBorder("Complex"));
+		pNorth.add(pTextFields, BorderLayout.WEST);
 		
 		// Création des étiquettes associées aux champs de texte.
 		JLabel lR = new JLabel("Real part");
-		pTextFieds.add(lR);
+		pTextFields.add(lR);
 		
 		JLabel lI = new JLabel("Imaginary part");
-		pTextFieds.add(lI);
+		pTextFields.add(lI);
 		
 		// Création des champs de texte.
 		JTextField tR = new JTextField();
 		tR.setText("0");
-		pTextFieds.add(tR);
+		pTextFields.add(tR);
 			
 		JTextField tI = new JTextField();
 		tI.setText("0");
-		pTextFieds.add(tI);
+		pTextFields.add(tI);
+		
+		// Création du panneau pour les contrôles.
+		JPanel pControls = new JPanel(new FlowLayout());
+		pControls.setBorder(BorderFactory.createTitledBorder("Controls"));
+		pNorth.add(pControls, BorderLayout.CENTER);
+		
+		// Création des boutons
+		for(int i = 0; i < 3; i++)
+		{
+			switch(i)
+			{
+				case 0: 
+					JButton bZoomPlus = new JButton("Zoom +");
+					pControls.add(bZoomPlus);
+					break;
+				
+				case 1:
+					JButton bZoomMinus = new JButton("Zoom -");
+					pControls.add(bZoomMinus);
+					break;
+					
+				case 2:
+					JButton bChangeComplex = new JButton("Change Complex");
+					pControls.add(bChangeComplex);
+					break;
+			}	
+		}
 		
 		return pNorth;
 	}
-
+	
 	abstract class ActionL implements ActionListener
 	{
-		
+
 	}
 }
