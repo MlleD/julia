@@ -9,10 +9,18 @@ public final class Complex
 	 * @param real
 	 * @param imaginary
 	 */
-	public Complex (double real, double imaginary)
+	public Complex(double real, double imaginary)
 	{
 		this.real = real;
 		this.imaginary = imaginary;
+	}
+	
+	/**
+	 * Constructeur par défaut de la classe.
+	 */
+	public Complex()
+	{
+		this(0, 0);
 	}
 	
 	/**
