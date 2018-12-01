@@ -1,3 +1,5 @@
+package juliaset;
+
 public class QuadraticJuliaSet 
 {
 	public static int divergenceIndex(Complex x0, Complex c, int maxIteration) 
@@ -10,5 +12,4 @@ public class QuadraticJuliaSet
 		
 		return ite;
 	}
-
 }
