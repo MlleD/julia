@@ -155,25 +155,25 @@ public class MandelbrotWindow extends JFrame
 					break;
 			
 				case 2:
-					JButton bArrowLeft = new JButton("←");
+					JButton bArrowLeft = new JButton("\u2190");
 					pControls.add(bArrowLeft);
 					bArrowLeft.addActionListener(new ActionL(MOVE_LEFT));
 					break;
 					
 				case 3:
-					JButton bArrowUp = new JButton("↑");
+					JButton bArrowUp = new JButton("\u2191");
 					pControls.add(bArrowUp);
 					bArrowUp.addActionListener(new ActionL(MOVE_UP));
 					break;
 					
 				case 4:
-					JButton bArrowRight = new JButton("→");
+					JButton bArrowRight = new JButton("\u2192");
 					pControls.add(bArrowRight);
 					bArrowRight.addActionListener(new ActionL(MOVE_RIGHT));
 					break;
 					
 				case 5:
-					JButton bArrowDown = new JButton("↓");
+					JButton bArrowDown = new JButton("\u2193");
 					pControls.add(bArrowDown);
 					bArrowDown.addActionListener(new ActionL(MOVE_DOWN));
 					break;
