@@ -29,7 +29,7 @@ public final class Complex
 	 * 
 	 * @return
 	 */
-	public double getReal()
+	public Double getReal()
 	{
 		return this.real;
 	}
@@ -39,7 +39,7 @@ public final class Complex
 	 * 
 	 * @return
 	 */
-	public double getImaginary()
+	public Double getImaginary()
 	{
 		return imaginary;
 	}
@@ -82,7 +82,7 @@ public final class Complex
 	 * 
 	 * @return
 	 */
-	public double modulus()
+	public Double modulus()
 	{
 		return this.real * this.real + this.imaginary * this.imaginary;
 	}

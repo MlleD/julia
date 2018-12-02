@@ -125,11 +125,11 @@ public class MandelbrotWindow extends JFrame
 		
 		// Création des champs de texte.
 		tReal = new JTextField();
-		tReal.setText("0");
+		tReal.setText(DrawZone.getDefaultComplex().getReal().toString());
 		pTextFields.add(tReal);
 			
 		tImaginary = new JTextField();
-		tImaginary.setText("0");
+		tImaginary.setText(DrawZone.getDefaultComplex().getImaginary().toString());
 		pTextFields.add(tImaginary);
 		
 		// Création du panneau pour les contrôles.
