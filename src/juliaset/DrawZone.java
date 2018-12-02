@@ -68,7 +68,11 @@ public class DrawZone extends JPanel
 	{
 		this.c = c;
 	}
-		
+
+	/**
+	 * Dessiner sur une image
+	 * @param image (type BufferedImage) sur laquelle dessiner
+	 */
 	public void drawImage(BufferedImage image)
 	{
 		for (int i = 0; i < image.getWidth(); i++) 

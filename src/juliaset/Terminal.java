@@ -43,6 +43,10 @@ public class Terminal {
 		}
 		return res;
 	}
+	/**
+	 * Obtenir la String a ecrire pour utiliser la valeur par default
+	 * @return String a ecrire pour utiliser la valeur par default
+	 */
 	public static String useDefaultMode ()
 	{
 		return "d";
