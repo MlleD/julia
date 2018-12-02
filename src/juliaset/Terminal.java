@@ -9,10 +9,16 @@ import javax.imageio.ImageIO;
 import java.io.File;
 
 public class Terminal {
+	private static final int DEFAULT_WIDTH = 500;
+	private static final int DEFAULT_HEIGHT = 500;
+
 	public Terminal(String[] args) {
 		
 		DrawZone drawzone = new DrawZone();
-		BufferedImage image = new BufferedImage(getPositiveInt(args[0]), getPositiveInt(args[1]), BufferedImage.TYPE_INT_RGB);
+		
+		int height = getDimension(args[0], Terminal.DEFAULT_HEIGHT);
+		int width = getDimension(args[1], Terminal.DEFAULT_WIDTH);
+		BufferedImage image = new BufferedImage(height, width, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = image.createGraphics();
 		g.setBackground(Color.red);
 		drawzone.drawImage(image);		
@@ -26,7 +32,7 @@ public class Terminal {
 			e.printStackTrace();
 		}
 	}
-	int getPositiveInt (String arg)
+	private int getPositiveInt (String arg)
 	{
 		int res = -1;
 		try {
@@ -36,5 +42,13 @@ public class Terminal {
 			System.exit(1);
 		}
 		return res;
+	}
+	public static String useDefaultMode ()
+	{
+		return "d";
+	}
+	private int getDimension (String arg, int defaultVal)
+	{
+		return arg.equalsIgnoreCase(Terminal.useDefaultMode()) ? defaultVal : getPositiveInt(arg);
 	}
 }
