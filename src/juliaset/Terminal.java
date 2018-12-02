@@ -14,12 +14,9 @@ public class Terminal {
 
 	public Terminal(String[] args) {
 		
-		checkArguments(args);
-		DrawZone drawzone = new DrawZone();
-		
-		int height = getDimension(args[0], Terminal.DEFAULT_HEIGHT);
-		int width = getDimension(args[1], Terminal.DEFAULT_WIDTH);
-		BufferedImage image = new BufferedImage(height, width, BufferedImage.TYPE_INT_RGB);
+		Number[] ar = checkArguments(args);		
+		BufferedImage image = new BufferedImage(ar[0].intValue(), ar[1].intValue(), BufferedImage.TYPE_INT_RGB);
+		DrawZone drawzone = new DrawZone(getComplex(args[2]));
 		Graphics2D g = image.createGraphics();
 		g.setBackground(Color.red);
 		drawzone.drawImage(image);		
@@ -33,12 +30,22 @@ public class Terminal {
 			e.printStackTrace();
 		}
 	}
-	private void checkArguments(String[] args)
+	/**
+	 * Verifie les arguments (type, valeur) passes en parametre
+	 * @param args : arguments
+	 * @return number : conversion de args en nombres
+	 */
+	private Number[] checkArguments(String[] args)
 	{
 		if (args.length != 3) {
-			System.err.println("Erreur d'argument : term <hauteur> <largeur> (ecrire "  + Terminal.useDefaultMode() +  " pour utiliser la valeur par defaut)");
+			System.err.println("Erreur d'argument : term <hauteur> <largeur> <complexe : " + Terminal.useDefaultMode() + " ou reelle!imaginaire, sans espace>");
+			System.err.println("Ecrire "  + Terminal.useDefaultMode() +  " pour utiliser la valeur par defaut)");
 			System.exit(1);
 		}
+		int height = getDimension(args[0], Terminal.DEFAULT_HEIGHT);
+		int width = getDimension(args[1], Terminal.DEFAULT_WIDTH);
+		Number[] ar = {height, width};
+		return ar;
 	}
 	private int getPositiveInt (String arg)
 	{
@@ -46,7 +53,18 @@ public class Terminal {
 		try {
 			res = Integer.parseUnsignedInt(arg);
 		} catch (NumberFormatException e) {
-			System.err.println("Il faut ecrire un nombre positif !");
+			System.err.println("Il faut ecrire un nombre entier positif !");
+			System.exit(1);
+		}
+		return res;
+	}
+	private double getDouble (String arg)
+	{
+		double res = -1.0;
+		try {
+			res = Double.parseDouble(arg);
+		} catch (NumberFormatException e) {
+			System.err.println("Il faut ecrire un nombre decimal !");
 			System.exit(1);
 		}
 		return res;
@@ -62,5 +80,14 @@ public class Terminal {
 	private int getDimension (String arg, int defaultVal)
 	{
 		return arg.equalsIgnoreCase(Terminal.useDefaultMode()) ? defaultVal : getPositiveInt(arg);
+	}
+	private Complex getComplex (String arg) {
+		String[] numbers = arg.split("!");
+		if (numbers[0].equalsIgnoreCase(Terminal.useDefaultMode())) {
+			return DrawZone.getDefaultComplex();
+		}
+		Double real = getDouble(numbers[0]);
+		Double im = getDouble(numbers[1]);
+		return new Complex(real, im);
 	}
 }

@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.security.PublicKey;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -14,7 +15,7 @@ public class DrawZone extends JPanel
 {
 	private Complex c;
 	private Complex x0;
-	
+	private static Complex C_DEFAULT = new Complex (-0.7, 0.27015);
 	private double zoom;
 	private double moveX;
 	private double moveY;
@@ -23,16 +24,27 @@ public class DrawZone extends JPanel
 	
 	private final int maxIter = 300;
 	
+	/**
+	 * Construit une drawzone avec ses parametres par defaut
+	 */
 	public DrawZone()
 	{
-		this.c = new Complex(-0.7, 0.27015);
+		this(DrawZone.getDefaultComplex());
+	}
+
+	/**
+	 * Construit une drawzone en fixant le nombre complexe de depart
+	 * @param c le nombre complexe
+	 */
+	public DrawZone(Complex c) {
+		this.c = c;
 		this.x0 = new Complex();
-		
+
 		this.zoom = 1;
 		this.moveX = 0;
 		this.moveY = 0;
 	}
-	
+
 	public double getZoom()
 	{
 		return this.zoom;
@@ -69,6 +81,11 @@ public class DrawZone extends JPanel
 		this.c = c;
 	}
 
+	public static Complex getDefaultComplex ()
+	{
+		return DrawZone.C_DEFAULT;
+	}
+
 	/**
 	 * Dessiner sur une image
 	 * @param image (type BufferedImage) sur laquelle dessiner
@@ -82,7 +99,7 @@ public class DrawZone extends JPanel
 				// Initialisation de x0.
 				double real = 1.5 * (i - image.getWidth() / 2) / (0.5 * zoom * image.getWidth()) + moveX;
 				double imaginary = (j - image.getHeight() / 2) / (0.5 * zoom * image.getHeight()) + moveY;
-				Complex x0 = new Complex(real, imaginary);
+				x0 = new Complex(real, imaginary);
 
 				// maxIteration
 				float iter = maxIter; 
