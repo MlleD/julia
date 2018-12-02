@@ -15,10 +15,6 @@ public class UI {
 			new MandelbrotWindow("Mandelbrot", width * 4 / 5, height * 4 / 5);
 		}
 		else {
-			if (args.length != 3) {
-				System.err.println("Erreur d'argument : term <hauteur> <largeur> (ecrire "  + Terminal.useDefaultMode() +  " pour utiliser la valeur par defaut)");
-				return;
-			}
 			new Terminal(Arrays.copyOfRange(args, 1, args.length));
 		}
     }

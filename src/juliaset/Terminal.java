@@ -14,6 +14,7 @@ public class Terminal {
 
 	public Terminal(String[] args) {
 		
+		checkArguments(args);
 		DrawZone drawzone = new DrawZone();
 		
 		int height = getDimension(args[0], Terminal.DEFAULT_HEIGHT);
@@ -30,6 +31,13 @@ public class Terminal {
 			e.printStackTrace();
 		} catch (NullPointerException e) {
 			e.printStackTrace();
+		}
+	}
+	private void checkArguments(String[] args)
+	{
+		if (args.length != 3) {
+			System.err.println("Erreur d'argument : term <hauteur> <largeur> (ecrire "  + Terminal.useDefaultMode() +  " pour utiliser la valeur par defaut)");
+			System.exit(1);
 		}
 	}
 	private int getPositiveInt (String arg)
