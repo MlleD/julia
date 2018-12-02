@@ -19,8 +19,6 @@ public class DrawZone extends JPanel
 	private double moveX;
 	private double moveY;
 	
-	private int width;
-	private int height;
 	private BufferedImage image;
 	
 	private final int maxIter = 300;
@@ -70,25 +68,18 @@ public class DrawZone extends JPanel
 	{
 		this.c = c;
 	}
-	
-	private void drawQuadraticJuliaSet(Graphics2D gg) 
-	{
-		width = getWidth();
-		height = getHeight();
 		
-		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		 
-		double real, imaginary; // Déclaration de x0.
-	        
-		for (int i = 0; i < width; i++) 
+	public void drawImage(BufferedImage image)
+	{
+		for (int i = 0; i < image.getWidth(); i++) 
 		{
-			for (int j = 0; j < height; j++) 
+			for (int j = 0; j < image.getHeight(); j++) 
 			{
 				// Initialisation de x0.
-				real = 1.5 * (i - width / 2) / (0.5 * zoom * width) + moveX;
-				imaginary = (j - height / 2) / (0.5 * zoom * height) + moveY;
-				x0 = new Complex(real, imaginary);
-	            
+				double real = 1.5 * (i - image.getWidth() / 2) / (0.5 * zoom * image.getWidth()) + moveX;
+				double imaginary = (j - image.getHeight() / 2) / (0.5 * zoom * image.getHeight()) + moveY;
+				Complex x0 = new Complex(real, imaginary);
+
 				// maxIteration
 				float iter = maxIter; 
 	                
@@ -101,10 +92,7 @@ public class DrawZone extends JPanel
 						iter > 0 ? 1 : 0));
 			  }
 		 }
-		
-		gg.drawImage(image, 0, 0, null); 
 	}
-	
 	public void saveToFile() throws IOException
 	{
         ImageIO.write(image, "PNG", new File(System.getProperty("user.home") + File.separator + "Julia set.png"));
@@ -116,7 +104,9 @@ public class DrawZone extends JPanel
 		super.paintComponent(g);
 		
 		Graphics2D gg = (Graphics2D) g;
-		drawQuadraticJuliaSet(gg);
+		image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+		drawImage(image);
+		gg.drawImage(image, 0, 0, null);
 	}
 }
 
