@@ -38,8 +38,8 @@ public class Terminal {
 	private Number[] checkArguments(String[] args)
 	{
 		if (args.length != 3) {
-			System.err.println("Erreur d'argument : term <hauteur> <largeur> <complexe : " + Terminal.useDefaultMode() + " ou reelle!imaginaire, sans espace>");
-			System.err.println("Ecrire "  + Terminal.useDefaultMode() +  " pour utiliser la valeur par defaut)");
+			System.err.println("Argument error : term <height> <width> <complex : " + Terminal.useDefaultMode() + " or real!imaginary without any space>");
+			System.err.println("Write "  + Terminal.useDefaultMode() +  " to use the default value)");
 			System.exit(1);
 		}
 		int height = getDimension(args[0], Terminal.DEFAULT_HEIGHT);
@@ -53,7 +53,7 @@ public class Terminal {
 		try {
 			res = Integer.parseUnsignedInt(arg);
 		} catch (NumberFormatException e) {
-			System.err.println("Il faut ecrire un nombre entier positif !");
+			System.err.println("A positive integer must be written instead of "+ arg + "!");
 			System.exit(1);
 		}
 		return res;
@@ -64,7 +64,7 @@ public class Terminal {
 		try {
 			res = Double.parseDouble(arg);
 		} catch (NumberFormatException e) {
-			System.err.println("Il faut ecrire un nombre decimal !");
+			System.err.println("A decimal number must be written instead of "+ arg +"!");
 			System.exit(1);
 		}
 		return res;
