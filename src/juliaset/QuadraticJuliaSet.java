@@ -2,14 +2,14 @@ package juliaset;
 
 public class QuadraticJuliaSet 
 {
-	public static int divergenceIndex(Complex x0, Complex c, int maxIteration) 
+	public static int divergenceIndex(Complex x0, Complex c, int maxIter) 
 	{
-		int ite = 0; 
+		int iter = maxIter; 
 		Complex xn = x0;
 		
-		while (ite++ < maxIteration && xn.modulus() <= 2.) 
+		while (iter-- > 0 && xn.modulus() <= 2.) 
 			xn = c.plus(xn.times(xn));
 		
-		return ite;
+		return iter;
 	}
 }

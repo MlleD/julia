@@ -18,6 +18,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+
+/**
+ * Classe mettant en oeuvre l'interface graphique.
+ * 
+ * @author Adrien Cavalieri
+ * @author Dorothée Hyunh
+ * @version 1.0
+ */
 public class MandelbrotWindow extends JFrame
 {
 	private DrawZone drawZone; // Déclaration de la zone de dessin de la fenêtre.
@@ -37,21 +45,25 @@ public class MandelbrotWindow extends JFrame
 	
 	private static final int SAVE_TO_FILE = 7;
 
-	public MandelbrotWindow(String title, int w, int h)
+	/**
+	 * Constructeur de la classe.
+	 * 
+	 * @param title Titre de la fenêtre
+	 * @param width Largeur de la fenêtre
+	 * @param height Hauteur de la fenêtre
+	 */
+	public MandelbrotWindow(String title, int width, int height)
 	{
 		super(title); // Ajout du titre de la fenêtre.
 		this.initializeMenu();
 		this.initialize();
-		this.setSize(w, h); // Définition de la taille de la fenêtre
+		this.setSize(width, height); // Définition de la taille de la fenêtre
 		this.setLocationRelativeTo(null); // Centre la fenêtre.
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true); // Afficher la fenêtre.
 		this.setResizable(false); // Interdire le redimensionnement de la fenêtre
 	}
 	
-	/**
-	 * Méthode plaçant les différents panneaux.
-	 */
 	private void initialize()
 	{		
 		Container c = this.getContentPane();
@@ -63,9 +75,6 @@ public class MandelbrotWindow extends JFrame
 		c.add(pDrawZone, BorderLayout.CENTER);
 	}
 	
-	/**
-	 * Méthode plaçant la barre de menus.
-	 */
 	private void initializeMenu()
 	{
 		// Création de la barre de menu.
@@ -81,12 +90,7 @@ public class MandelbrotWindow extends JFrame
 		fileMenu.add(save);
 		save.addActionListener(new ActionL(SAVE_TO_FILE));
 	}
-	
-	/**
-	 * Méthode créant la zone de dessin de la fenêtre.
-	 * 
-	 * @return
-	 */
+
 	private JPanel createDrawZone()
 	{
 		// Création du panneau de la zone de dessin.
@@ -100,11 +104,6 @@ public class MandelbrotWindow extends JFrame
 		return pDrawZone;
 	}
 	
-	/**
-	 * Méthode créant le panneau nord de la fenêtre.
-	 * 
-	 * @return
-	 */
 	private JPanel createNorthPanel()
 	{
 		// Création du panneau nord.
@@ -189,7 +188,7 @@ public class MandelbrotWindow extends JFrame
 		return pNorth;
 	}
 	
-	class ActionL implements ActionListener
+	private class ActionL implements ActionListener
 	{
 		private int value;
 		

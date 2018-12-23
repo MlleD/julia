@@ -32,6 +32,7 @@ public class Terminal {
 	}
 	/**
 	 * Verifie les arguments (type, valeur) passes en parametre
+	 * 
 	 * @param args : arguments
 	 * @return number : conversion de args en nombres
 	 */

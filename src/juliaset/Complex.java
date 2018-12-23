@@ -1,14 +1,22 @@
 package juliaset;
+
+/**
+ * Classe représentant les nombres complexes.
+ * 
+ * @author Adrien Cavalieri
+ * @author Dorothée Hyunh
+ * @version 1.0
+ */
 public final class Complex 
 {
-	private final double real; // Partie réelle du nombre complexe.
-	private final double imaginary; // Partie imaginaire du nombre complex.
+	private final double real;
+	private final double imaginary;
 	
 	/**
-	 * Constructeur de la classe.
+	 * Constructeur membres à membres de la classe. 
 	 * 
-	 * @param real
-	 * @param imaginary
+	 * @param real Partie réelle
+	 * @param imaginary Partie imaginaire
 	 */
 	public Complex(double real, double imaginary)
 	{
@@ -25,9 +33,9 @@ public final class Complex
 	}
 	
 	/**
-	 * Accesseur de la partie réelle du nombre complexe.
+	 * Accesseur de la partie entière du nombre complexe.
 	 * 
-	 * @return
+	 * @return La partie entière du nombre complexe.
 	 */
 	public Double getReal()
 	{
@@ -37,7 +45,7 @@ public final class Complex
 	/**
 	 * Accesseur de la partie imaginaire du nombre complexe.
 	 * 
-	 * @return
+	 * @return La partie imaginaire du nombre complexe.
 	 */
 	public Double getImaginary()
 	{
@@ -45,12 +53,10 @@ public final class Complex
 	}
 	
 	/**
-	 * Méthode additionnant 2 nombres complexes et
-	 * renvoyant le résultat sou la forme d'un nouveau
-	 * complexe.
+	 * Méthode additionnant 2 nombres complexes.
 	 * 
-	 * @param other
-	 * @return
+	 * @param other Un autre nombre complexe
+	 * @return Un nouveau nombre complexe.
 	 */
 	public Complex plus(Complex other) 
 	{
@@ -61,12 +67,10 @@ public final class Complex
     }
 	
 	/**
-	 * Méthode multipliant 2 nombres complexes et 
-	 * renvoyant le résultat sous la formes d'un nouveau
-	 * nombre complexe.
+	 * Méthode multipliant 2 nombres complexes.
 	 * 
-	 * @param other
-	 * @return
+	 * @param other Un autre nombre complexe
+	 * @return Un nouveau nombre complexe.
 	 */
 	public Complex times(Complex other)
 	{
@@ -77,10 +81,10 @@ public final class Complex
 	}
 	
 	/**
-	 * Méthode renvoyant la valeur absolue d'un
+	 * Méthode renvoyant le module d'un
 	 * nombre complexe.
 	 * 
-	 * @return
+	 * @return La valeur absolue du nombre complexe.
 	 */
 	public Double modulus()
 	{

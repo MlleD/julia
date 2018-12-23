@@ -11,21 +11,29 @@ import java.security.PublicKey;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+/**
+ * Classe représentant la zone de dessin de la fenêtre graphique.
+ * 
+ * @author Adrien Cavalieri
+ * @author Dorothée Hyunh
+ * @version 1.0
+ */
 public class DrawZone extends JPanel
 {
 	private Complex c;
 	private Complex x0;
-	private static Complex C_DEFAULT = new Complex (-0.7, 0.27015);
+	private int maxIter;
+	
+	private static Complex C_DEFAULT = new Complex(-0.7, 0.27015);
+	
 	private double zoom;
 	private double moveX;
 	private double moveY;
 	
 	private BufferedImage image;
 	
-	private final int maxIter = 300;
-	
 	/**
-	 * Construit une drawzone avec ses parametres par defaut
+	 * Constructeur par défaut de la classe.
 	 */
 	public DrawZone()
 	{
@@ -33,62 +41,106 @@ public class DrawZone extends JPanel
 	}
 
 	/**
-	 * Construit une drawzone en fixant le nombre complexe de depart
-	 * @param c le nombre complexe
+	 * Constructeur membres à membres de la classe.
+	 * 
+	 * @param c Un nombre complexe
 	 */
-	public DrawZone(Complex c) {
+	public DrawZone(Complex c) 
+	{
 		this.c = c;
 		this.x0 = new Complex();
+		this.maxIter = 300;
 
 		this.zoom = 1;
 		this.moveX = 0;
 		this.moveY = 0;
 	}
 
+	/**
+	 * Accesseur du niveau de zoom.
+	 * 
+	 * @return Le niveau de zoom.
+	 */
 	public double getZoom()
 	{
 		return this.zoom;
 	}
 	
+	/**
+	 * Mutateur du niveau de zoom.
+	 * 
+	 * @param zoom Niveau de zoom
+	 */
 	public void setZoom(double zoom)
 	{
 		if (zoom > 0)
 			this.zoom = zoom;
 	}
 	
+	/**
+	 * Accesseur du niveau de décalage horizontal.
+	 * 
+	 * @return Le niveau de décalage horizontal
+	 */
 	public double getMoveX()
 	{
 		return moveY;
 	}
 	
+	/**
+	 * Mutateur du niveau de décalage horizontal.
+	 * 
+	 * @param moveX Niveau de décalage horizontal
+	 */
 	public void setMoveX(double moveX)
 	{
 		this.moveX = moveX;
 	}
 	
+	/**
+	 * Accesseur du niveau de décalage vertical.
+	 * 
+	 * @return Le niveau de décalage vertical
+	 */
 	public double getMoveY()
 	{
 		return moveY;
 	}
 	
+	/**
+	 * Mutateur du niveau décalage vertical
+	 * 
+	 * @param moveY Niveau de décalage vertical
+	 */
 	public void setMoveY(double moveY)
 	{
 		this.moveY = moveY;
 	}
 	
+	/**
+	 * Mutateur du nombre complexe.
+	 * 
+	 * @param c Nombre complexe
+	 */
 	public void setC(Complex c)
 	{
 		this.c = c;
 	}
 
-	public static Complex getDefaultComplex ()
+	/**
+	 * Méthode retournant le nombre complexe par défaut.
+	 * 
+	 * @return Le nombre complexe par défaut.
+	 */
+	public static Complex getDefaultComplex()
 	{
 		return DrawZone.C_DEFAULT;
 	}
 
 	/**
-	 * Dessiner sur une image
-	 * @param image (type BufferedImage) sur laquelle dessiner
+	 * Méthode permettant de dessiner l'ensemble de Julia.
+	 * 
+	 * @param image Image sur laquelle l'ensemble de Julia doit être dessiné
 	 */
 	public void drawImage(BufferedImage image)
 	{
@@ -101,19 +153,21 @@ public class DrawZone extends JPanel
 				double imaginary = (j - image.getHeight() / 2) / (0.5 * zoom * image.getHeight()) + moveY;
 				x0 = new Complex(real, imaginary);
 
-				// maxIteration
-				float iter = maxIter; 
-	                
-				// divergenceIndex
-				while (x0.modulus() <= 2 && iter-- > 0) 
-					x0 = c.plus(x0.times(x0));
+				// Appel de divergenceIndex.
+				float iter = QuadraticJuliaSet.divergenceIndex(x0, c, maxIter);
 				
 				// Colorisation.
 				image.setRGB(i, j, Color.HSBtoRGB((maxIter / iter) % 1, 1, 
 						iter > 0 ? 1 : 0));
-			  }
-		 }
+			}
+		}
 	}
+	
+	/**
+	 * Méthode permettant de sauvegarder l'ensemble de Julia dans un fichier image.
+	 * 
+	 * @throws IOException
+	 */
 	public void saveToFile() throws IOException
 	{
         ImageIO.write(image, "PNG", new File(System.getProperty("user.home") + File.separator + "Julia set.png"));
