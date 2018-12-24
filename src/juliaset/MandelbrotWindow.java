@@ -234,15 +234,20 @@ public class MandelbrotWindow extends JFrame
 					
 					sReal = tReal.getText();
 					sImaginary = tImaginary.getText();
+							
+					try 
+					{
+						Double.valueOf(sReal);
+						Double.valueOf(sImaginary);
+				    } 
 					
-					if(sReal.equals("") || sReal.contains("[a-zA-Z]+") || sReal.contains(" ") || sImaginary.equals("") || 
-							sImaginary.contains("[a-zA-Z]+") || sImaginary.contains(" "))
+					catch (NumberFormatException ex) 
 					{
 						JOptionPane.showMessageDialog(MandelbrotWindow.this, 
 								"Enter a value!", "Invalid value", JOptionPane.ERROR_MESSAGE);
-					}
-
-					else
+				    }
+					
+					finally
 					{
 						real = Double.parseDouble(sReal);
 						imaginary = Double.parseDouble(sImaginary);
@@ -250,6 +255,7 @@ public class MandelbrotWindow extends JFrame
 						tImaginary.setText("" + imaginary);
 						drawZone.setC(new Complex(real, imaginary));
 					}
+
 					break;
 					
 				case SAVE_TO_FILE:
