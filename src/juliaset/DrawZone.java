@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  * Classe représentant la zone de dessin de la fenêtre graphique.
  * 
  * @author Adrien Cavalieri
- * @author Dorothée Hyunh
+ * @author Dorothée Huynh
  * @version 1.0
  */
 public class DrawZone extends JPanel

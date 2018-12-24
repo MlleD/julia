@@ -4,7 +4,7 @@ package juliaset;
  * Classe représentant les nombres complexes.
  * 
  * @author Adrien Cavalieri
- * @author Dorothée Hyunh
+ * @author Dorothée Huynh
  * @version 1.0
  */
 public final class Complex 
@@ -86,8 +86,17 @@ public final class Complex
 	 * 
 	 * @return La valeur absolue du nombre complexe.
 	 */
-	public Double modulus()
+	public double modulus()
 	{
 		return this.real * this.real + this.imaginary * this.imaginary;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString()
+	{
+		return real + " + " + imaginary + "i";
 	}
 }

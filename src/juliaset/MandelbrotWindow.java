@@ -23,7 +23,7 @@ import javax.swing.JTextField;
  * Classe mettant en oeuvre l'interface graphique.
  * 
  * @author Adrien Cavalieri
- * @author Dorothée Hyunh
+ * @author Dorothée Huynh
  * @version 1.0
  */
 public class MandelbrotWindow extends JFrame
@@ -235,9 +235,12 @@ public class MandelbrotWindow extends JFrame
 					sReal = tReal.getText();
 					sImaginary = tImaginary.getText();
 					
-					if(sReal.equals("") || sImaginary.equals(""))
+					if(sReal.equals("") || sReal.contains("[a-zA-Z]+") || sReal.contains(" ") || sImaginary.equals("") || 
+							sImaginary.contains("[a-zA-Z]+") || sImaginary.contains(" "))
+					{
 						JOptionPane.showMessageDialog(MandelbrotWindow.this, 
 								"Enter a value!", "Invalid value", JOptionPane.ERROR_MESSAGE);
+					}
 
 					else
 					{

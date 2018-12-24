@@ -8,7 +8,7 @@ public class Main
 		{
 			System.err.println("Argument error : <mode> (\"ig\" or something else)");
 			
-			return;
+			System.exit(1);
 		}
 		
 		new UI(args);
