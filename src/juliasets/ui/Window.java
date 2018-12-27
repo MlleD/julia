@@ -126,11 +126,11 @@ public class Window extends JFrame
 		
 		// Création des champs de texte.
 		tReal = new JTextField();
-		tReal.setText(DrawZone.getDefaultComplex().getReal().toString());
+		tReal.setText("" + DrawZone.getDefaultComplex().getReal());
 		pTextFields.add(tReal);
 			
 		tImaginary = new JTextField();
-		tImaginary.setText(DrawZone.getDefaultComplex().getImaginary().toString());
+		tImaginary.setText("" + DrawZone.getDefaultComplex().getImaginary());
 		pTextFields.add(tImaginary);
 		
 		// Création du panneau pour les contrôles.

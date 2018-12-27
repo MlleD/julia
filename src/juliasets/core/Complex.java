@@ -37,7 +37,7 @@ public final class Complex
 	 * 
 	 * @return La partie entière du nombre complexe.
 	 */
-	public Double getReal()
+	public double getReal()
 	{
 		return this.real;
 	}
@@ -47,7 +47,7 @@ public final class Complex
 	 * 
 	 * @return La partie imaginaire du nombre complexe.
 	 */
-	public Double getImaginary()
+	public double getImaginary()
 	{
 		return imaginary;
 	}
@@ -98,5 +98,40 @@ public final class Complex
 	public String toString()
 	{
 		return real + " + " + imaginary + "i";
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() 
+	{
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		
+		temp = Double.doubleToLongBits(imaginary);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(real);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object other) 
+	{
+		if (other == this) 
+			return true;
+		
+		if (other == null || !(other instanceof Complex)) 
+			return false;
+		
+		Complex otherComplex = (Complex) other;
+		
+		return real == otherComplex.real && imaginary == otherComplex.imaginary;
 	}
 }

@@ -7,7 +7,7 @@ public final class JuliaSets
 		int iter = maxIter; 
 		Complex xn = x0;
 		
-		while (iter-- > 0 && xn.modulus() <= 2.) 
+		while (iter-- > 0 && xn.modulus() <= 2) 
 			xn = c.plus(xn.times(xn));
 		
 		return iter;

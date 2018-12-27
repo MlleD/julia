@@ -131,7 +131,7 @@ public class DrawZone extends JPanel
 	}
 
 	/**
-	 * Méthode retournant le nombre complexe par défaut.
+	 * Méthode retournant le nombre complexe affiché par défaut.
 	 * 
 	 * @return Le nombre complexe par défaut.
 	 */
