@@ -1,4 +1,4 @@
-package juliaset;
+package juliasets.ui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -10,6 +10,9 @@ import java.security.PublicKey;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
+import juliasets.core.Complex;
+import juliasets.core.JuliaSets;
 
 /**
  * Classe représentant la zone de dessin de la fenêtre graphique.
@@ -154,7 +157,7 @@ public class DrawZone extends JPanel
 				x0 = new Complex(real, imaginary);
 
 				// Appel de divergenceIndex.
-				float iter = QuadraticJuliaSet.divergenceIndex(x0, c, maxIter);
+				float iter = JuliaSets.divergenceIndex(x0, c, maxIter);
 				
 				// Colorisation.
 				image.setRGB(i, j, Color.HSBtoRGB((maxIter / iter) % 1, 1, 

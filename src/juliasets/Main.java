@@ -1,4 +1,6 @@
-package juliaset;
+package juliasets;
+
+import juliasets.ui.UI;
 
 public class Main 
 {

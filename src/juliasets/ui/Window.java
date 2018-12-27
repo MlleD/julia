@@ -1,4 +1,4 @@
-package juliaset;
+package juliasets.ui;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import juliasets.core.Complex;
+
 
 /**
  * Classe mettant en oeuvre l'interface graphique.
@@ -26,7 +28,7 @@ import javax.swing.JTextField;
  * @author Dorothée Huynh
  * @version 1.0
  */
-public class MandelbrotWindow extends JFrame
+public class Window extends JFrame
 {
 	private DrawZone drawZone; // Déclaration de la zone de dessin de la fenêtre.
 	
@@ -52,7 +54,7 @@ public class MandelbrotWindow extends JFrame
 	 * @param width Largeur de la fenêtre
 	 * @param height Hauteur de la fenêtre
 	 */
-	public MandelbrotWindow(String title, int width, int height)
+	public Window(String title, int width, int height)
 	{
 		super(title); // Ajout du titre de la fenêtre.
 		this.initializeMenu();
@@ -88,7 +90,7 @@ public class MandelbrotWindow extends JFrame
 		// Création d'une option sauvegarde pour le menu "File"
 		JMenuItem save = new JMenuItem("Save as png");
 		fileMenu.add(save);
-		save.addActionListener(new ActionL(SAVE_TO_FILE));
+		save.addActionListener(new ActionListenerJuliaSetsWindow(SAVE_TO_FILE));
 	}
 
 	private JPanel createDrawZone()
@@ -144,43 +146,43 @@ public class MandelbrotWindow extends JFrame
 				case 0: 
 					JButton bZoomIn = new JButton("Zoom in");
 					pControls.add(bZoomIn);
-					bZoomIn.addActionListener(new ActionL(ZOOM_IN));
+					bZoomIn.addActionListener(new ActionListenerJuliaSetsWindow(ZOOM_IN));
 					break;
 				
 				case 1:
 					JButton bZoomOut = new JButton("Zoom out");
 					pControls.add(bZoomOut);
-					bZoomOut.addActionListener(new ActionL(ZOOM_OUT));
+					bZoomOut.addActionListener(new ActionListenerJuliaSetsWindow(ZOOM_OUT));
 					break;
 			
 				case 2:
 					JButton bArrowLeft = new JButton("\u2190");
 					pControls.add(bArrowLeft);
-					bArrowLeft.addActionListener(new ActionL(MOVE_LEFT));
+					bArrowLeft.addActionListener(new ActionListenerJuliaSetsWindow(MOVE_LEFT));
 					break;
 					
 				case 3:
 					JButton bArrowUp = new JButton("\u2191");
 					pControls.add(bArrowUp);
-					bArrowUp.addActionListener(new ActionL(MOVE_UP));
+					bArrowUp.addActionListener(new ActionListenerJuliaSetsWindow(MOVE_UP));
 					break;
 					
 				case 4:
 					JButton bArrowRight = new JButton("\u2192");
 					pControls.add(bArrowRight);
-					bArrowRight.addActionListener(new ActionL(MOVE_RIGHT));
+					bArrowRight.addActionListener(new ActionListenerJuliaSetsWindow(MOVE_RIGHT));
 					break;
 					
 				case 5:
 					JButton bArrowDown = new JButton("\u2193");
 					pControls.add(bArrowDown);
-					bArrowDown.addActionListener(new ActionL(MOVE_DOWN));
+					bArrowDown.addActionListener(new ActionListenerJuliaSetsWindow(MOVE_DOWN));
 					break;
 					
 				case 6:
 					JButton bChangeComplex = new JButton("Change complex");
 					pControls.add(bChangeComplex);
-					bChangeComplex.addActionListener(new ActionL(CHANGE_COMPLEX));
+					bChangeComplex.addActionListener(new ActionListenerJuliaSetsWindow(CHANGE_COMPLEX));
 					break;
 			}	
 		}
@@ -188,11 +190,11 @@ public class MandelbrotWindow extends JFrame
 		return pNorth;
 	}
 	
-	private class ActionL implements ActionListener
+	private class ActionListenerJuliaSetsWindow implements ActionListener
 	{
 		private int value;
 		
-		public ActionL(int value)
+		public ActionListenerJuliaSetsWindow(int value)
 		{
 			this.value = value;
 		}	
@@ -243,7 +245,7 @@ public class MandelbrotWindow extends JFrame
 					
 					catch (NumberFormatException ex) 
 					{
-						JOptionPane.showMessageDialog(MandelbrotWindow.this, 
+						JOptionPane.showMessageDialog(Window.this, 
 								"Enter a value!", "Invalid value", JOptionPane.ERROR_MESSAGE);
 				    }
 					

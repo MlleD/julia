@@ -1,4 +1,4 @@
-package juliaset;
+package juliasets.core;
 
 /**
  * Classe représentant les nombres complexes.

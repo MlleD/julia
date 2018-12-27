@@ -1,4 +1,4 @@
-package juliaset;
+package juliasets.ui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -6,6 +6,9 @@ import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+
+import juliasets.core.Complex;
+
 import java.io.File;
 
 public class Terminal 

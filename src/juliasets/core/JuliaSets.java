@@ -1,6 +1,6 @@
-package juliaset;
+package juliasets.core;
 
-public class QuadraticJuliaSet 
+public final class JuliaSets 
 {
 	public static int divergenceIndex(Complex x0, Complex c, int maxIter) 
 	{

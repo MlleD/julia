@@ -1,4 +1,4 @@
-package juliaset;
+package juliasets.ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -16,7 +16,7 @@ public class UI
             int height = (int) screen.getHeight();
 			
             // Création de la fenêtre graphique.
-			new MandelbrotWindow("Mandelbrot", width * 4 / 5, height * 4 / 5);
+			new Window("Julia Sets", width * 4 / 5, height * 4 / 5);
 		}
 		
         else 
