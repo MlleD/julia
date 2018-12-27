@@ -24,7 +24,7 @@ public class Terminal
 		DrawZone drawzone = new DrawZone(getComplex(args[2]));
 		Graphics2D g = image.createGraphics();
 		g.setBackground(Color.red);
-		drawzone.drawImage(image);		
+		drawzone.drawQuadraticJuliaSet(image);		
 		g.drawImage(image, 0, 0, null);
 		
 		try 

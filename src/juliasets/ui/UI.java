@@ -16,7 +16,7 @@ public class UI
             int height = (int) screen.getHeight();
 			
             // Création de la fenêtre graphique.
-			new Window("Julia Sets", width * 4 / 5, height * 4 / 5);
+			new Window("Julia Sets", width * 5 / 6, height * 5 / 6);
 		}
 		
         else 

@@ -27,7 +27,8 @@ public class DrawZone extends JPanel
 	private Complex x0;
 	private int maxIter;
 	
-	private static Complex C_DEFAULT = new Complex(-0.7, 0.27015);
+	private static final int DEFAULT_MAX_ITER = 300;
+	private static final Complex DEFAULT_C = new Complex(-0.7, 0.27015);
 	
 	private double zoom;
 	private double moveX;
@@ -52,7 +53,7 @@ public class DrawZone extends JPanel
 	{
 		this.c = c;
 		this.x0 = new Complex();
-		this.maxIter = 300;
+		this.maxIter = DEFAULT_MAX_ITER;
 
 		this.zoom = 1;
 		this.moveX = 0;
@@ -137,15 +138,36 @@ public class DrawZone extends JPanel
 	 */
 	public static Complex getDefaultComplex()
 	{
-		return DrawZone.C_DEFAULT;
+		return DrawZone.DEFAULT_C;
+	}
+	
+	/**
+	 * Accesseur du nombre maximum d'itérations.
+	 * 
+	 * @return Le nombre maximum d'itérations.
+	 */
+	public int getMaxIter()
+	{
+		return maxIter;
+	}
+	
+	/**
+	 * Mutateur du nombre maximum d'itérations.
+	 * 
+	 * @param maxIter Nombre maximum d'itérations.
+	 */
+	public void setMaxIter(int maxIter)
+	{
+		if (maxIter >= 0 && maxIter <= 100000)
+			this.maxIter = maxIter;
 	}
 
 	/**
-	 * Méthode permettant de dessiner l'ensemble de Julia.
+	 * Méthode permettant de dessiner l'ensemble de Julia quadratique.
 	 * 
-	 * @param image Image sur laquelle l'ensemble de Julia doit être dessiné
+	 * @param image Image sur laquelle l'ensemble de Julia quadratique doit être dessiné
 	 */
-	public void drawImage(BufferedImage image)
+	public void drawQuadraticJuliaSet(BufferedImage image)
 	{
 		for (int i = 0; i < image.getWidth(); i++) 
 		{
@@ -167,7 +189,7 @@ public class DrawZone extends JPanel
 	}
 	
 	/**
-	 * Méthode permettant de sauvegarder l'ensemble de Julia dans un fichier image.
+	 * Méthode permettant de sauvegarder l'ensemble de Julia dessiné dans un fichier image.
 	 * 
 	 * @throws IOException
 	 */
@@ -183,7 +205,7 @@ public class DrawZone extends JPanel
 		
 		Graphics2D gg = (Graphics2D) g;
 		image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
-		drawImage(image);
+		drawQuadraticJuliaSet(image);
 		gg.drawImage(image, 0, 0, null);
 	}
 }

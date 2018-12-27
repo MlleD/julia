@@ -1,5 +1,7 @@
 package juliasets.core;
 
+import java.util.Objects;
+
 /**
  * Classe représentant les nombres complexes.
  * 
@@ -106,31 +108,19 @@ public final class Complex
 	@Override
 	public int hashCode() 
 	{
-		final int prime = 31;
-		int result = 1;
-		long temp;
-		
-		temp = Double.doubleToLongBits(imaginary);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(real);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		
-		return result;
+		return Objects.hash(real, imaginary);
 	}
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
-	public boolean equals(Object other) 
-	{
-		if (other == this) 
-			return true;
-		
-		if (other == null || !(other instanceof Complex)) 
+	public boolean equals(Object object) 
+	{	
+		if (object == null || !(object instanceof Complex)) 
 			return false;
 		
-		Complex otherComplex = (Complex) other;
+		Complex otherComplex = (Complex) object;
 		
 		return real == otherComplex.real && imaginary == otherComplex.imaginary;
 	}

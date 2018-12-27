@@ -1,6 +1,7 @@
 package juliasets.ui;
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -34,6 +35,7 @@ public class Window extends JFrame
 	
 	private JTextField tReal;
 	private JTextField tImaginary;
+	private JTextField tMaxIter;
 	
 	private static final int ZOOM_IN = 0;
 	private static final int ZOOM_OUT = 1;
@@ -44,8 +46,9 @@ public class Window extends JFrame
 	private static final int MOVE_DOWN = 5;
 	
 	private static final int CHANGE_COMPLEX = 6;
+	private static final int CHANGE_MAX_ITER = 7;
 	
-	private static final int SAVE_TO_FILE = 7;
+	private static final int SAVE_TO_FILE = 8;
 
 	/**
 	 * Constructeur de la classe.
@@ -70,11 +73,12 @@ public class Window extends JFrame
 	{		
 		Container c = this.getContentPane();
 		
+		JPanel pDrawZone = this.createDrawZone();
+		c.add(pDrawZone, BorderLayout.CENTER);
+		
 		JPanel pNorth = this.createNorthPanel();
 		c.add(pNorth, BorderLayout.NORTH);	
 		
-		JPanel pDrawZone = this.createDrawZone();
-		c.add(pDrawZone, BorderLayout.CENTER);
 	}
 	
 	private void initializeMenu()
@@ -112,19 +116,19 @@ public class Window extends JFrame
 		JPanel pNorth = new JPanel();
 		pNorth.setLayout(new BorderLayout());
 		
-		// Création du panneau pour les champs de texte.
+		// Création du panneau pour les champs de texte du nombre complexe.
 		JPanel pTextFields = new JPanel(new GridLayout(2, 2, 2, 2));
 		pTextFields.setBorder(BorderFactory.createTitledBorder("Complex"));
 		pNorth.add(pTextFields, BorderLayout.WEST);
 		
-		// Création des étiquettes associées aux champs de texte.
+		// Création des étiquettes associées aux champs de texte du nombre complexe.
 		JLabel lR = new JLabel("Real part");
 		pTextFields.add(lR);
 		
 		JLabel lI = new JLabel("Imaginary part");
 		pTextFields.add(lI);
 		
-		// Création des champs de texte.
+		// Création des champs de texte du nombre complexe.
 		tReal = new JTextField();
 		tReal.setText("" + DrawZone.getDefaultComplex().getReal());
 		pTextFields.add(tReal);
@@ -133,13 +137,26 @@ public class Window extends JFrame
 		tImaginary.setText("" + DrawZone.getDefaultComplex().getImaginary());
 		pTextFields.add(tImaginary);
 		
+		// Création du panneau pour les contrôles additionnels.
+		JPanel pMisc = new JPanel(new GridLayout(2, 2, 2, 2));
+		pMisc.setBorder(BorderFactory.createTitledBorder("Miscellaneous"));
+		pNorth.add(pMisc, BorderLayout.EAST);
+		
+		// Création de l'étiquette associée au nombre maximum d'itérations.
+		JLabel lMaxIter = new JLabel("Max iterations");
+		pMisc.add(lMaxIter);
+		
+		// Création du champ de texte du nombre maximum d'itérations.
+		tMaxIter = new JTextField("" + drawZone.getMaxIter(), 10);
+		pMisc.add(tMaxIter);
+		
 		// Création du panneau pour les contrôles.
 		JPanel pControls = new JPanel(new FlowLayout());
 		pControls.setBorder(BorderFactory.createTitledBorder("Controls"));
 		pNorth.add(pControls, BorderLayout.CENTER);
 		
 		// Création des boutons
-		for(int i = 0; i < 7; i++)
+		for(int i = 0; i < 8; i++)
 		{
 			switch(i)
 			{
@@ -183,6 +200,12 @@ public class Window extends JFrame
 					JButton bChangeComplex = new JButton("Change complex");
 					pControls.add(bChangeComplex);
 					bChangeComplex.addActionListener(new ActionListenerJuliaSetsWindow(CHANGE_COMPLEX));
+					break;
+					
+				case 7:
+					JButton bChangeMaxIter = new JButton("Change max iterations");
+					pControls.add(bChangeMaxIter);
+					bChangeMaxIter.addActionListener(new ActionListenerJuliaSetsWindow(CHANGE_MAX_ITER));
 					break;
 			}	
 		}
@@ -256,6 +279,32 @@ public class Window extends JFrame
 						tReal.setText("" + real);
 						tImaginary.setText("" + imaginary);
 						drawZone.setC(new Complex(real, imaginary));
+					}
+
+					break;
+					
+				case CHANGE_MAX_ITER:
+					int maxIter;
+					String sMaxIter;
+					
+					sMaxIter = tMaxIter.getText();
+							
+					try 
+					{
+						Integer.valueOf(sMaxIter);
+				    } 
+					
+					catch (NumberFormatException ex) 
+					{
+						JOptionPane.showMessageDialog(Window.this, 
+								"Enter a value!", "Invalid value", JOptionPane.ERROR_MESSAGE);
+				    }
+					
+					finally
+					{
+						maxIter = Integer.parseInt(sMaxIter);
+						tMaxIter.setText("" + maxIter);
+						drawZone.setMaxIter(maxIter);
 					}
 
 					break;
