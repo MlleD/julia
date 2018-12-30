@@ -2,6 +2,13 @@ package juliasets;
 
 import juliasets.ui.UI;
 
+/**
+ * Point d'entrée du programme.
+ * 
+ * @author Adrien Cavalieri
+ * @author Dorothée Huynh
+ * @version 1.0
+ */
 public class Main 
 {
 	public static void main(String[] args) 

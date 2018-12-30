@@ -62,11 +62,11 @@ public class Window extends JFrame
 		super(title); // Ajout du titre de la fenêtre.
 		this.initializeMenu();
 		this.initialize();
-		this.setSize(width, height); // Définition de la taille de la fenêtre
-		this.setLocationRelativeTo(null); // Centre la fenêtre.
+		this.setSize(width, height); // Définition de la taille de la fenêtre.
+		this.setLocationRelativeTo(null); // Centrer la fenêtre.
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true); // Afficher la fenêtre.
-		this.setResizable(false); // Interdire le redimensionnement de la fenêtre
+		this.setResizable(false); // Interdire le redimensionnement de la fenêtre.
 	}
 	
 	private void initialize()
@@ -155,7 +155,7 @@ public class Window extends JFrame
 		pControls.setBorder(BorderFactory.createTitledBorder("Controls"));
 		pNorth.add(pControls, BorderLayout.CENTER);
 		
-		// Création des boutons
+		// Création des boutons et associations aux écouteurs.
 		for(int i = 0; i < 8; i++)
 		{
 			switch(i)

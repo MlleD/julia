@@ -112,7 +112,7 @@ public class DrawZone extends JPanel
 	}
 	
 	/**
-	 * Mutateur du niveau décalage vertical
+	 * Mutateur du niveau de décalage vertical
 	 * 
 	 * @param moveY Niveau de décalage vertical
 	 */
@@ -189,7 +189,7 @@ public class DrawZone extends JPanel
 	}
 	
 	/**
-	 * Méthode permettant de sauvegarder l'ensemble de Julia dessiné dans un fichier image.
+	 * Méthode permettant de sauvegarder l'ensemble de Julia dans un fichier image.
 	 * 
 	 * @throws IOException
 	 */
@@ -198,6 +198,9 @@ public class DrawZone extends JPanel
         ImageIO.write(image, "PNG", new File(System.getProperty("user.home") + File.separator + "Julia set.png"));
     }
 	
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	@Override
 	public void paintComponent(Graphics g) 
 	{

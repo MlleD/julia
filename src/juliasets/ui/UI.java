@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class UI 
 {
-    public UI (String[] args) 
+    public UI(String[] args) 
     {
         if (args[0].equalsIgnoreCase("ig")) 
         {
@@ -16,7 +16,7 @@ public class UI
             int height = (int) screen.getHeight();
 			
             // Création de la fenêtre graphique.
-			new Window("Julia Sets", width * 5 / 6, height * 5 / 6);
+			new Window("Julia sets", width * 5 / 6, height * 5 / 6);
 		}
 		
         else 
