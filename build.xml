@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="JuliaSets" default="run" basedir="./">
+   <description>Building JuliaSets without an IDE</description>
+   <target name="compile"
+           description="Compile the Java code.">
+      <javac srcdir="src"
+             destdir="classes"
+             debug="true"
+      includeantruntime="false"/>
+   </target>
+   <target name="doc" description="Generate documentation.">
+    <javadoc sourcepath="src" destdir="doc"/>
+  </target>
+</project>
