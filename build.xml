@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="JuliaSets" default="run" basedir="./">
+<project name="JuliaSets" default="compile" basedir="./">
    <description>Building JuliaSets without an IDE</description>
    <target name="compile"
            description="Compile the Java code.">
+     <mkdir dir="classes"/>
       <javac srcdir="src"
              destdir="classes"
              debug="true"
