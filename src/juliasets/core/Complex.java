@@ -51,7 +51,7 @@ public final class Complex
 	 */
 	public double getImaginary()
 	{
-		return imaginary;
+		return this.imaginary;
 	}
 	
 	/**
@@ -90,7 +90,7 @@ public final class Complex
 	 */
 	public double modulus()
 	{
-		return this.real * this.real + this.imaginary * this.imaginary;
+		return Math.sqrt(this.real * this.real) + Math.sqrt(this.imaginary * this.imaginary);
 	}
 	
 	/* (non-Javadoc)
