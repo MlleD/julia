@@ -12,6 +12,6 @@
    </target>
    <target name="doc" depends="compile"
 	   description="Generate documentation.">
-     <javadoc sourcepath="./src" destdir="./doc"/>
+     <javadoc encoding="UTF-8" charset="UTF-8" docencoding="UTF-8" sourcepath="./src" destdir="./doc"/>
    </target>
 </project>
