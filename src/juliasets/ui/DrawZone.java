@@ -28,7 +28,7 @@ public class DrawZone extends JPanel
 	private int maxIter;
 	
 	private static final int DEFAULT_MAX_ITER = 300;
-	private static final Complex DEFAULT_C = new Complex(-0.7, 0.27015);
+	private static final Complex DEFAULT_C = new Complex(0.3, 0.5);
 	
 	private double zoom;
 	private double moveX;
