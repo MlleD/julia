@@ -54,7 +54,7 @@ public class Terminal
 	{
 		if (args.length != 3) 
 		{
-			System.err.println("Argument error : term <height> <width> <complex : " + Terminal.useDefaultMode() + " or real!imaginary without any space>");
+			System.err.println("Argument error : term <height> <width> <complex : " + Terminal.useDefaultMode() + " or real and imaginary parts separated by an underscore>");
 			System.err.println("Write "  + Terminal.useDefaultMode() +  " to use the default value)");
 			System.exit(1);
 		}
@@ -118,7 +118,7 @@ public class Terminal
 	
 	private Complex getComplex (String arg) 
 	{
-		String[] numbers = arg.split("!");
+		String[] numbers = arg.split("_");
 		
 		if (numbers[0].equalsIgnoreCase(Terminal.useDefaultMode())) 
 		{
